@@ -11,8 +11,8 @@ sys.path.append(os.path.join(os.path.dirname(__file__), '../../../../'))
 from sdks.novavision.src.media.image import Image
 from sdks.novavision.src.base.component import Component
 from sdks.novavision.src.helper.executor import Executor
-from components.Package.src.utils.response import build_response
-from components.Package.src.models.PackageModel import PackageModel
+from components.GrayExample.src.utils.response import build_response
+from components.GrayExample.src.models.PackageModel import PackageModel
 
 
 class Package(Component):
@@ -49,8 +49,11 @@ class Package(Component):
 
             return img_rotation
 
+    def gray(self,image):
+        return cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
     def run(self):
         img = Image.get_frame(img=self.image, redis_db=self.redis_db)
+        img.value=self.gray(img)
         img.value = self.rotation(img.value)
         self.image = Image.set_frame(img=img, package_uID=self.uID, redis_db=self.redis_db)
         packageModel = build_response(context=self)
