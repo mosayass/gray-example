@@ -85,6 +85,52 @@ class Degree(Config):
         title = "Angle"
 
 
+
+class ConfigKernelSize(Config):
+    name: Literal["KernelSize"] = "KernelSize"
+    value: int = Field(default=5, ge=1, le=21)  # Slider or Input for Blur strength
+    type: Literal["number"] = "number"
+    field: Literal["textInput"] = "textInput"
+
+    class Config:
+        title = "Blur Strength (Odd Number)"
+
+
+class BlurExampleConfigs(Configs):
+    kernelSize: ConfigKernelSize
+
+
+class BlurExampleInputs(Inputs):
+    inputImage: InputImage
+
+
+class BlurExampleOutputs(Outputs):
+    outputImage: OutputImage
+
+
+class BlurExampleRequest(Request):
+    inputs: Optional[BlurExampleInputs]
+    configs: BlurExampleConfigs
+
+    class Config:
+        json_schema_extra = {
+            "target": "configs"
+        }
+
+
+class BlurExampleResponse(Response):
+    outputs: BlurExampleOutputs
+
+class BlurExampleExecutor(Config):
+    name: Literal["BlurExample"] = "BlurExample"
+    value: Union[BlurExampleRequest, BlurExampleResponse]
+    type: Literal["object"] = "object"
+    field: Literal["option"] = "option"
+
+    class Config:
+        title = "Blur Filter"
+        json_schema_extra = {"target": {"value": 0}}
+
 class GrayExampleInputs(Inputs):
     inputImage: InputImage
 
@@ -111,14 +157,7 @@ class GrayExampleRequest(Request):
 class GrayExampleResponse(Response):
     outputs: GrayExampleOutputs
 
-class DummyExecutor(Config):
-    name: Literal["Dummy"] = "Dummy"
-    value: Literal["Dummy"] = "Dummy"
-    type: Literal["object"] = "object"
-    field: Literal["option"] = "option"
 
-    class Config:
-        title = "testing something"
 
 
 class GrayExampleExecutor(Config):
@@ -138,7 +177,7 @@ class GrayExampleExecutor(Config):
 
 class ConfigExecutor(Config):
     name: Literal["ConfigExecutor"] = "ConfigExecutor"
-    value: Union[GrayExampleExecutor,DummyExecutor]
+    value: Union[GrayExampleExecutor,BlurExampleExecutor]
     type: Literal["object"] = "object"
     type: Literal["executor"] = "executor"
     field: Literal["dependentDropdownlist"] = "dependentDropdownlist"
