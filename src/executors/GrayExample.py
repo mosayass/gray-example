@@ -53,7 +53,7 @@ class GrayExample(Component):
         return cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
     def run(self):
         img = Image.get_frame(img=self.image, redis_db=self.redis_db)
-        img.value=self.gray(img)
+        img.value=self.gray(img.value)
         img.value = self.rotation(img.value)
         self.image = Image.set_frame(img=img, package_uID=self.uID, redis_db=self.redis_db)
         packageModel = build_response(context=self)
