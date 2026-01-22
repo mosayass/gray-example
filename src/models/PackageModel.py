@@ -111,6 +111,15 @@ class GrayExampleRequest(Request):
 class GrayExampleResponse(Response):
     outputs: GrayExampleOutputs
 
+class DummyExecutor(Config):
+    name: Literal["Dummy"] = "Dummy"
+    value: Literal["Dummy"] = "Dummy"
+    type: Literal["object"] = "object"
+    field: Literal["option"] = "option"
+
+    class Config:
+        title = "testing something"
+
 
 class GrayExampleExecutor(Config):
     name: Literal["GrayExample"] = "GrayExample"
@@ -129,7 +138,8 @@ class GrayExampleExecutor(Config):
 
 class ConfigExecutor(Config):
     name: Literal["ConfigExecutor"] = "ConfigExecutor"
-    value: Union[GrayExampleExecutor]
+    value: Union[GrayExampleExecutor,DummyExecutor]
+    type: Literal["object"] = "object"
     type: Literal["executor"] = "executor"
     field: Literal["dependentDropdownlist"] = "dependentDropdownlist"
 
