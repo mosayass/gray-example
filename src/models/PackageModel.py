@@ -177,13 +177,13 @@ class GrayExampleExecutor(Config):
 
 class ConfigExecutor(Config):
     name: Literal["ConfigExecutor"] = "ConfigExecutor"
-    value: Union[GrayExampleExecutor,BlurExampleExecutor]
+    value: Union[BlurExampleExecutor,GrayExampleExecutor]
     type: Literal["executor"] = "executor"
     field: Literal["dependentDropdownlist"] = "dependentDropdownlist"
     restart: Literal[True] = True
 
     class Config:
-        title = "Task"
+        title = "Taskkk"
         # json_schema_extra = {
         #     "target": "value"
         # }
