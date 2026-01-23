@@ -178,9 +178,9 @@ class GrayExampleExecutor(Config):
 class ConfigExecutor(Config):
     name: Literal["ConfigExecutor"] = "ConfigExecutor"
     value: Union[GrayExampleExecutor,BlurExampleExecutor]
-    type: Literal["object"] = "object"
     type: Literal["executor"] = "executor"
     field: Literal["dependentDropdownlist"] = "dependentDropdownlist"
+    restart: Literal[True] = True
 
     class Config:
         title = "Task"
@@ -195,5 +195,5 @@ class PackageConfigs(Configs):
 
 class PackageModel(Package):
     configs: PackageConfigs
-    type: Literal["component"] = "component"
+    type: Literal["capsule"] = "capsule"
     name: Literal["GrayExample"] = "GrayExample"
