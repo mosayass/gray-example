@@ -195,5 +195,5 @@ class PackageConfigs(Configs):
 
 class PackageModel(Package):
     configs: PackageConfigs
-    type: Literal["capsule"] = "capsule"
+    type: Literal["component"] = "component"
     name: Literal["GrayExample"] = "GrayExample"
