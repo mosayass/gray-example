@@ -281,7 +281,7 @@ class ConfigExecutor(Config):
     restart: Literal[True] = True
 
     class Config:
-        title = "Task"
+        title = "Type"
         # json_schema_extra = {
         #     "target": "value"
         # }
