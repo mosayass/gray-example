@@ -242,8 +242,8 @@ class MixerConfigs(Configs):
     mixMode: ConfigMixMode
 
 class MixerInputs(Inputs):
-    inputMain: InputImageMain
-    inputOverlay: InputImageOverlay
+    inputMain: InputImage
+    inputOverlay: InputImageTwo
 
 class MixerOutputs(Outputs):
     outputMix: OutputImageMix
