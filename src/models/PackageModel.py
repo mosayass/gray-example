@@ -216,10 +216,24 @@ class ConfigModeManual(Config):
     field: Literal["option"] = "option"
     class Config: title = "Manual Alpha"
 
+class ConfigStrengthLow(Config):
+    name: Literal["Low"] = "Low"
+    value: Literal["Low"] = "Low"
+    type: Literal["string"] = "string"
+    field: Literal["option"] = "option"
+    class Config: title = "Low"
+
+class ConfigStrengthHigh(Config):
+    name: Literal["High"] = "High"
+    value: Literal["High"] = "High"
+    type: Literal["string"] = "string"
+    field: Literal["option"] = "option"
+    class Config: title = "High"
+
 class ConfigStrength(Config):
     name: Literal["Strength"] = "Strength"
-    value: Literal["Low", "High"] = "Low"
-    type: Literal["string"] = "string"
+    value: Union[ConfigStrengthLow, ConfigStrengthHigh]
+    type: Literal["object"] = "object"
     field: Literal["dropdownlist"] = "dropdownlist"
     class Config: title = "Strength Level"
 
