@@ -36,7 +36,7 @@ def build_response_mixer(context):
     out2 = OutputImageDiff(value=context.image_diff)
 
     # Add both to Outputs
-    outputs = MixerOutputs(outputMix=out1, outputDiff=out2)
+    outputs = MixerOutputs(outputImageMix=out1, outputImageDiff=out2)
 
     mixerResponse = MixerResponse(outputs=outputs)
     mixerExecutor = MixerExecutor(value=mixerResponse)
